@@ -2,6 +2,17 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ config('app.name', 'Laravel') }}</title>
+    <link rel="icon" type="image/webp" href="{{ asset('lam-ang/images/workin.webp') }}">
+    @stack('meta')
+    @stack('styles')
+    {{-- @livewireStyles --}}
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap&text=homeassignment_indpersonaccount_circle_off"
+        rel="stylesheet" />
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
@@ -9,186 +20,206 @@
 
     <div class="wrapper">
         <!-- Sidebar  -->
-        <nav id="sidebar" style="z-index:20">
-            <div class="sidebar-header position-relative">
-                <img src="{{ asset('lam-ang/images/workin.webp') }}" alt="" style="max-width:10rem">
-                <a type="button" id="sidebarCollapse" class="btn btn-secondary"
-                    style="position: absolute; right:-25px; top:25px ">
-                    <x-awesome.chevron class=""></x-awesome.chevron>
-                </a>
-
-            </div>
-            <div class="row">
-                <div class="col text-center">
-                    @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-                        <img src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}"
-                            alt="{{ Auth::user()->name }}" class="rounded-circle mx-auto" height="150px"
-                            width="150px" />
-                    @else
-                        <span class="inline-flex rounded-md">
-                            <img class="rounded-5" style="max-width: 3.5rem"
-                                src="https://randomuser.me/api/portraits/lego/{{ rand(0, 8) }}.jpg"
-                                alt="{{ Auth::user()->name }}" height="150px" width="150px" />
-
-                            {{-- <button type="button" class=""> --}}
-                            {{-- {{ Auth::user()->name }} --}}
-                            {{-- </button> --}}
-                        </span>
-                    @endif
-                    <p class="mt-3 mb-0">{{ Auth::user()->name }}</p>
-                    <p><a class="dropdown-item text-white small" href="{{ route('profile.show') }}">Account Settings</a>
-                    </p>
+        <nav id="sidebar" style="z-index:20" class="">
+            <div class="card  m-2  bg-white h-100 rounded-4 border-0 shadow-lg">
+                <div class="sidebar-header text-center position-relative bg-light shadow-lg rounded-4"
+                    style="background-image: url('{{ asset('lam-ang/images/capitol-grey.webp') }}'); height:125px; background-size: 100%; background-position: bottom; background-repeat: no-repeat;">
+                    <img src="{{ asset('lam-ang/images/work.png') }}" alt="" style="max-width:10rem; ">
+                    <a type="button" id="sidebarCollapse" class="btn btn-secondary bg-pilipinas"
+                        style="position: absolute; right:-25px; top:100px ">
+                        <x-awesome.chevron class=""></x-awesome.chevron>
+                    </a>
                 </div>
-            </div>
-            @role('employer')
-                <ul class="list-unstyled accordion accordion-flush mt-3" id="accordionFlush">
-                    <li class="{{ Route::currentRouteName() === 'employer.dashboard.index' ? 'highlight' : '' }}">
-                        <a href="{{ route('employer.dashboard.index') }}" class="">Dashboard</a>
-                    </li>
-                    <li>
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                            Job Posting
-                        </button>
-                        <div id="flush-collapseTwo" class="accordion-collapse collapse"
-                            data-bs-parent="#accordionFlushExample">
-                            <ul class="list-unstyled">
-                                <li
-                                    class="{{ Route::currentRouteName() === 'employer.vacancy.index' ? 'highlight' : '' }}">
-                                    <a wire:navigate href="{{ route('employer.vacancy.index') }}">Active</a>
-                                </li>
-                                <li
-                                    class="{{ Route::currentRouteName() === 'employer.vacancy.archive' ? 'highlight' : '' }}">
-                                    <a wire:navigate href="{{ route('employer.vacancy.archive') }}">Archive</a>
-                                </li>
+                <div class="card-body p-2  rounded-bottom-0 rounded-4">
 
-                            </ul>
+                    <div class="row">
+                        <div class="col text-center">
+                            @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
+                                <img src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}"
+                                    alt="{{ Auth::user()->name }}" class="rounded-circle mx-auto" height="150px"
+                                    width="150px" />
+                            @else
+                                <span class="inline-flex rounded-md">
+                                    <img class="rounded-5" style="max-width: 3.5rem"
+                                        src="https://randomuser.me/api/portraits/lego/{{ rand(0, 8) }}.jpg"
+                                        alt="{{ Auth::user()->name }}" height="150px" width="150px" />
+
+                                    {{-- <button type="button" class=""> --}}
+                                    {{-- {{ Auth::user()->name }} --}}
+                                    {{-- </button> --}}
+                                </span>
+                            @endif
+                            <p class="mt-3 mb-0">{{ Auth::user()->name }}</p>
+                            <p><a class="dropdown-item text-white small" href="{{ route('profile.show') }}">Account
+                                    Settings</a>
+                            </p>
                         </div>
-                    </li>
-                    <li class="{{ Route::currentRouteName() === 'employer.vacancy.applicant' ? 'highlight' : '' }}">
-                        <a wire:navigate href="{{ route('employer.vacancy.applicant', [0]) }}">Applicants</a>
-                    </li>
-                </ul>
-            @endrole
-            @role('peso')
-                <ul class="list-unstyled accordion accordion-flush mt-3" id="accordionFlush">
-                    <li class="{{ Route::currentRouteName() === 'peso.dashboard.index' ? 'highlight' : '' }}">
-                        <a href="{{ route('peso.dashboard.index') }}"
-                            class=""><x-awesome.dashboard></x-awesome.dashboard> Dashboard</a>
-                    </li>
-                    <li>
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                            <x-awesome.post></x-awesome.post> Job Posting
-                        </button>
-                        <div id="flush-collapseTwo" class="accordion-collapse collapse "
-                            data-bs-parent="#accordionFlushExample">
-                            <ul class="list-unstyled">
-                                <li class="{{ Route::currentRouteName() === 'peso.vacancy.index' ? 'highlight' : '' }}">
-                                    <a wire:navigate href="{{ route('peso.vacancy.index') }}">Active</a>
-                                </li>
-                                <li class="{{ Route::currentRouteName() === 'peso.vacancy.archive' ? 'highlight' : '' }}">
-                                    <a wire:navigate href="{{ route('peso.vacancy.archive') }}">Archive</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="{{ Route::currentRouteName() === 'peso.company.index' ? 'highlight' : '' }}">
-                        <a wire:navigate href="{{ route('peso.company.index') }}" class="">
-                            <x-awesome.companies></x-awesome.companies> Companies</a>
-                    </li>
-                    <li class="{{ Route::currentRouteName() === 'peso.recruitment.index' ? 'highlight' : '' }}">
-                        <a wire:navigate href="{{ route('peso.recruitment.index') }}"
-                            class=""><x-awesome.calendar></x-awesome.calendar> Recruitment Activity</a>
-                    </li>
-                    <li>
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#flush-collapseMat" aria-expanded="false" aria-controls="flush-collapseMat">
-                            <x-awesome.folder></x-awesome.folder> MAT Report
-                        </button>
-                        <div id="flush-collapseMat" class="accordion-collapse collapse show"
-                            data-bs-parent="#accordionFlush">
-                            <ul class="list-unstyled">
-                                <li
-                                    class="{{ Route::currentRouteName() === 'peso.mataginayon-report.manage' ? 'highlight' : '' }}">
-                                    <a wire:navigate href="{{ route('peso.mataginayon-report.manage') }}">Manage</a>
-                                </li>
-                                <li
-                                    class="{{ Route::currentRouteName() === 'peso.mataginayon-report.reports' ? 'highlight' : '' }}">
-                                    <a wire:navigate href="{{ route('peso.mataginayon-report.reports') }}">Reports</a>
-                                </li>
-                                <li
-                                    class="{{ Route::currentRouteName() === 'peso.mataginayon-report.submission' ? 'highlight' : '' }}">
-                                    <a wire:navigate href="{{ route('peso.mataginayon-report.submission') }}">My
-                                        Reports</a>
-                                </li>
-                                {{-- <li class="{{ Route::currentRouteName() === 'peso.vacancy.archive' ? 'highlight' : '' }}">
+                    </div>
+                    @role('employer')
+                        <ul class="list-unstyled accordion accordion-flush mt-3" id="accordionFlush">
+
+                            <li
+                                class="{{ Route::currentRouteName() === 'employer.dashboard.index' ? 'highlight bg-pilipinas rounded rounded-3 ' : '' }}">
+                                <a href="{{ route('employer.dashboard.index') }}"
+                                    class="d-flex gap-2 text-decoration-none">
+                                    <span class="material-symbols-outlined">home</span>Home</a>
+                            </li>
+
+                            <li>
+                                <button class="accordion-button collapsed d-flex gap-2 " type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                                    aria-controls="flush-collapseTwo">
+                                    <span class="material-symbols-outlined">
+                                        assignment_ind
+                                    </span> Job Posting
+                                </button>
+                                <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                    data-bs-parent="#accordionFlushExample">
+                                    <ul class="list-unstyled">
+                                        <li
+                                            class="{{ Route::currentRouteName() === 'employer.vacancy.index' ? 'highlight bg-pilipinas rounded rounded-3 ' : '' }}">
+                                            <a wire:navigate href="{{ route('employer.vacancy.index') }}">Active</a>
+                                        </li>
+                                        <li
+                                            class="{{ Route::currentRouteName() === 'employer.vacancy.archive' ? 'highlight bg-pilipinas rounded rounded-3 ' : '' }}">
+                                            <a wire:navigate href="{{ route('employer.vacancy.archive') }}">Archive</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+                            <li
+                                class="{{ Route::currentRouteName() === 'employer.vacancy.applicant' ? 'highlight bg-pilipinas rounded rounded-3 ' : '' }}">
+                                <a wire:navigate href="{{ route('employer.vacancy.applicant', [0]) }}"
+                                    class="d-flex gap-2 text-decoration-none">
+                                    <span class="material-symbols-outlined">
+                                        person
+                                    </span>Applicants</a>
+                            </li>
+                        </ul>
+                    @endrole
+                    @role('peso')
+                        <ul class="list-unstyled accordion accordion-flush mt-3" id="accordionFlush">
+                            <li class="{{ Route::currentRouteName() === 'peso.dashboard.index' ? 'highlight' : '' }}">
+                                <a href="{{ route('peso.dashboard.index') }}"
+                                    class=""><x-awesome.dashboard></x-awesome.dashboard> Dashboard</a>
+                            </li>
+                            <li>
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                                    aria-controls="flush-collapseTwo">
+                                    <x-awesome.post></x-awesome.post> Job Posting
+                                </button>
+                                <div id="flush-collapseTwo" class="accordion-collapse collapse "
+                                    data-bs-parent="#accordionFlushExample">
+                                    <ul class="list-unstyled">
+                                        <li
+                                            class="{{ Route::currentRouteName() === 'peso.vacancy.index' ? 'highlight' : '' }}">
+                                            <a wire:navigate href="{{ route('peso.vacancy.index') }}">Active</a>
+                                        </li>
+                                        <li
+                                            class="{{ Route::currentRouteName() === 'peso.vacancy.archive' ? 'highlight' : '' }}">
+                                            <a wire:navigate href="{{ route('peso.vacancy.archive') }}">Archive</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="{{ Route::currentRouteName() === 'peso.company.index' ? 'highlight' : '' }}">
+                                <a wire:navigate href="{{ route('peso.company.index') }}" class="">
+                                    <x-awesome.companies></x-awesome.companies> Companies</a>
+                            </li>
+                            <li class="{{ Route::currentRouteName() === 'peso.recruitment.index' ? 'highlight' : '' }}">
+                                <a wire:navigate href="{{ route('peso.recruitment.index') }}"
+                                    class=""><x-awesome.calendar></x-awesome.calendar> Recruitment Activity</a>
+                            </li>
+                            <li>
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseMat" aria-expanded="false"
+                                    aria-controls="flush-collapseMat">
+                                    <x-awesome.folder></x-awesome.folder> MAT Report
+                                </button>
+                                <div id="flush-collapseMat" class="accordion-collapse collapse show"
+                                    data-bs-parent="#accordionFlush">
+                                    <ul class="list-unstyled">
+                                        <li
+                                            class="{{ Route::currentRouteName() === 'peso.mataginayon-report.manage' ? 'highlight' : '' }}">
+                                            <a wire:navigate
+                                                href="{{ route('peso.mataginayon-report.manage') }}">Manage</a>
+                                        </li>
+                                        <li
+                                            class="{{ Route::currentRouteName() === 'peso.mataginayon-report.reports' ? 'highlight' : '' }}">
+                                            <a wire:navigate
+                                                href="{{ route('peso.mataginayon-report.reports') }}">Reports</a>
+                                        </li>
+                                        <li
+                                            class="{{ Route::currentRouteName() === 'peso.mataginayon-report.submission' ? 'highlight' : '' }}">
+                                            <a wire:navigate href="{{ route('peso.mataginayon-report.submission') }}">My
+                                                Reports</a>
+                                        </li>
+                                        {{-- <li class="{{ Route::currentRouteName() === 'peso.vacancy.archive' ? 'highlight' : '' }}">
                                 <a wire:navigate href="{{route('peso.vacancy.archive')}}">Submitted Reports</a>
                             </li> --}}
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="{{ Route::currentRouteName() === 'administrator.manage-user-roles' ? 'highlight' : '' }}">
-                        <a wire:navigate href="{{ route('administrator.manage-user-roles') }}" class=""> User
-                            Roles</a>
-                    </li>
-                </ul>
-            @endrole
+                                    </ul>
+                                </div>
+                            </li>
+                            <li
+                                class="{{ Route::currentRouteName() === 'administrator.manage-user-roles' ? 'highlight' : '' }}">
+                                <a wire:navigate href="{{ route('administrator.manage-user-roles') }}" class="">
+                                    User
+                                    Roles</a>
+                            </li>
+                        </ul>
+                    @endrole
+                    @role('peso-manager')
+                        <ul class="list-unstyled accordion accordion-flush mt-3" id="accordionFlush">
+                            <li>
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseMat" aria-expanded="false"
+                                    aria-controls="flush-collapseMat">
+                                    <x-awesome.folder></x-awesome.folder> MAT Report
+                                </button>
+                                <div id="flush-collapseMat" class="accordion-collapse collapse show"
+                                    data-bs-parent="#accordionFlush">
+                                    <ul class="list-unstyled">
+                                        <li
+                                            class="{{ Route::currentRouteName() === 'peso.mataginayon-report.submission' ? 'highlight' : '' }}">
+                                            <a wire:navigate href="{{ route('peso.mataginayon-report.submission') }}">My
+                                                Reports</a>
 
-            @role('peso-manager')
-                <ul class="list-unstyled accordion accordion-flush mt-3" id="accordionFlush">
-                    <li>
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#flush-collapseMat" aria-expanded="false" aria-controls="flush-collapseMat">
-                            <x-awesome.folder></x-awesome.folder> MAT Report
-                        </button>
-                        <div id="flush-collapseMat" class="accordion-collapse collapse show"
-                            data-bs-parent="#accordionFlush">
-                            <ul class="list-unstyled">
-                                <li
-                                    class="{{ Route::currentRouteName() === 'peso.mataginayon-report.submission' ? 'highlight' : '' }}">
-                                    <a wire:navigate href="{{ route('peso.mataginayon-report.submission') }}">My
-                                        Reports</a>
-
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-            @endrole
-
-
-            <ul class="list-unstyled w-100" style="position:absolute; bottom: 0">
-                <li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    @endrole
+                    {{-- <ul class="list-unstyled w-100">
+                        <li> --}}
                     <form method="POST" action="{{ route('logout') }}" x-data>
                         @csrf
-                        <button class="btn text-white form-control d-flex justify-content-between"
+                        <button class="btn d-flex gap-2" style="position:absolute; bottom: 15px"
                             href="{{ route('logout') }}" @click.prevent="$root.submit();">
-                            <span>
-                                Log-out
+                            <span class="material-symbols-outlined">
+                                account_circle_off
                             </span>
-                            <span>
-                                <svg class="awesome-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                    <path fill="#ffffff"
-                                        d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V256c0 17.7 14.3 32 32 32s32-14.3 32-32V32zM143.5 120.6c13.6-11.3 15.4-31.5 4.1-45.1s-31.5-15.4-45.1-4.1C49.7 115.4 16 181.8 16 256c0 132.5 107.5 240 240 240s240-107.5 240-240c0-74.2-33.8-140.6-86.6-184.6c-13.6-11.3-33.8-9.4-45.1 4.1s-9.4 33.8 4.1 45.1c38.9 32.3 63.5 81 63.5 135.4c0 97.2-78.8 176-176 176s-176-78.8-176-176c0-54.4 24.7-103.1 63.5-135.4z" />
-                                </svg>
-                            </span>
+                            Log-out
                         </button>
                     </form>
-                </li>
-            </ul>
+                    {{-- </li>
+                    </ul> --}}
+                </div>
+            </div>
         </nav>
 
         <!-- Page Content  -->
         <div id="content">
 
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col text-end">
                     <a class="btn btn-light" href="#">
                         <i class="fas fa-bell text-dark"></i>
                     </a>
                 </div>
-            </div>
-            <div class="row">
+            </div> --}}
+            <div class="row bg-white shadow rounded-end-4">
                 <div class="col-md-12 ps-5">
                     @if (isset($header))
                         <header class="p-3 ">
@@ -200,7 +231,9 @@
                     @endif
                 </div>
             </div>
-            {{ $slot }}
+            <div class="ps-5 py-5">
+                {{ $slot }}
+            </div>
         </div>
     </div>
 

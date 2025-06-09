@@ -66,7 +66,7 @@
             <div class="row mb-3" wire:ignore>
                 <x-form-panel-vertical class="col-md-12">
                     <x-label class="">Company Background</x-label>
-                    <textarea name="" rows="10" wire:model="company_overview" id="compan_overview"
+                    <textarea name="" rows="10" wire:model="company_overview" id="detalye"
                               class="form-control {{$errors->has('company_overview') ? 'is-invalid':''}}"></textarea>
                     @error('company_overview')
                     <x-slot name="message">{{$message}}</x-slot>

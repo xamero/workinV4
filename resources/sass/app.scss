@@ -9,6 +9,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope&family=PT+Serif&family=Poppins&family=Quicksand&family=Roboto:wght@300;400&family=Urbanist&display=swap");
 @import "flatpickr/dist/flatpickr.min.css";
 
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 300,
+        'GRAD' 0,
+        'opsz' 24
+}
+
+
+
+
+
 body {
     font-family: "Poppins", sans-serif;
 }
@@ -162,10 +174,7 @@ a.pointer {
     cursor: pointer;
 }
 
-li.highlight a{
-    background: $light;
-    color: $secondary;
-}
+
 
 .offcanvas {
     width: 100% !important;
@@ -303,10 +312,10 @@ div.sticky {
     padding-left: 1rem;
 }
 
-/* small udjustments */
+/* small adjustments */
 .accordion--custom .accordion-header .accordion-button {
     padding-left: 0;
-    background: none;
+    background: none !important;
 }
 
 .accordion--custom .accordion-button:not(.collapsed) {
@@ -352,11 +361,11 @@ a:focus {
 }
 
 #sidebar {
-    min-width: 250px;
-    max-width: 250px;
+    min-width: 275px;
+    max-width: 275px;
     height: 100%;
-    background: $primary;
-    color: #fff;
+    // background: $primary;
+    color: #ffffff;
     transition: all 0.3s;
     position: fixed;
 }
@@ -367,7 +376,7 @@ a:focus {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: $primary;
+    // background: $primary;
 }
 
 
@@ -379,7 +388,7 @@ a:focus {
 
 #sidebar ul li a:hover {
     color: $primary !important;
-    background: #fff;
+    background: #ffffff;
 }
 
 #sidebar ul li.active > a,
@@ -388,11 +397,16 @@ a[aria-expanded="true"] {
     background: $secondary;
 }
 
+li.highlight a {
+    // background: #FFFFFF;
+    color: #FFFFFF;
+}
+
 
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: $secondary;
+    // background: $secondary;
 }
 
 
@@ -404,6 +418,7 @@ ul ul a {
 #content {
     width: 100%;
     padding: 20px;
+    padding-top: 10px;
     min-height: 100vh;
     transition: all 0.3s;
     margin-left: 250px;

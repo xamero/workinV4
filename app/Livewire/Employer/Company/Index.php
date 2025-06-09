@@ -39,7 +39,10 @@ class Index extends Component
     {
 //        $this->dispatch('companyProfileRefresh');
         $this->action = 'update';
+        $this->dispatch('show-tinyMce');
         $this->dispatch('toggle-offcanvas', id: 'offcanvasCompanyProfile');
+     
+      
 //        $this->js('new bootstrap.Offcanvas(document.getElementById("offcanvasCompanyProfile")).show();');
 //        $this->dispatch('show-tinyMce');
     }

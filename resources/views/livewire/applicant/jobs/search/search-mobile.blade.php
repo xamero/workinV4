@@ -36,11 +36,10 @@
                                                 </small>
                                             @endif
                                         </div>
+                                        @if ($result->company != null)
                                         <p class="text-muted">{{ $result->company->name }} |
                                             {{ $result->location }}</p>
-                                        {{-- <p class="text-muted">Listed {{
-                        Carbon\Carbon::parse($result->created_at)->diffForHumans() }}
-                    </p> --}}
+                                        @endif
                                         @if ($result->salary_from != null or $result->salary_to != null)
                                             <p class="text-muted">Salary:
                                                 &#8369;{{ number_format($result->salary_from, 2) }}
