@@ -30,31 +30,31 @@ body {
     background: linear-gradient(135deg,  rgba(0, 0, 255, 0.6), rgba(255, 0, 0, 0.6)); 
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    //font-family: 'Oswald', sans-serif;
-    font-family: "Bebas Neue", cursive;
-    letter-spacing: 0.1em;
-}
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6 {
+//     //font-family: 'Oswald', sans-serif;
+//     font-family: "Bebas Neue", cursive;
+//     letter-spacing: 0.1em;
+// }
 
 .read {
     font-family: "Tinos", serif;
 }
 
-.h6,
-.h5,
-.h4,
-.h3,
-.h2,
-.h1,
-.p {
-    font-family: "Bebas Neue", sans-serif;
-    letter-spacing: 0.1em;
-}
+// .h6,
+// .h5,
+// .h4,
+// .h3,
+// .h2,
+// .h1,
+// .p {
+//     font-family: "Bebas Neue", sans-serif;
+//     letter-spacing: 0.1em;
+// }
 
 .btn-lite-primary, .btn-lite-danger, .btn-lite-secondary{
     background-color: $gray-300 !important;
@@ -298,7 +298,7 @@ Loadin ---------- g
 div.sticky {
     position: -webkit-sticky;
     position: sticky;
-    top: 0;
+    top: 15px;
     //background-color: yellow;
     //padding: 50px;
     //font-size: 20px;

@@ -1,6 +1,6 @@
 <div wire:ignore.self class="offcanvas w-100 offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasApply">
     <div class="offcanvas-header">
-        <h5 class="offcanvas-title text-primary display-6 ">Create and send application</h5>
+        <p class="offcanvas-title text-muted fs-5 fw-bold">Create and send application</p>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body ">
@@ -15,24 +15,23 @@
             {{ session('error') }}
         </div>
         @endif
-        <div class="card mb-3">
+        <div class="card bg-white mb-3">
             <div class="card-body">
-                <p>Job title: {{$activeVacancy->title}}</p>
-                <p>Company: {{$activeVacancy->company->name}}</p>
-
+                <p class="mb-0"><span class="fw-bold">Job title:</span> {{$activeVacancy->title}}</p>
+                <p class="mb-0"><span class="fw-bold">Company:</span> {{$activeVacancy->company->name}}</p>
             </div>
         </div>
         <div class="row mb-3" wire:ignore>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-3">
                 <div class="form-group">
-                    <label for="letter" class="required">Cover letter</label>
+                    <label for="letter" class="required fw-bold">Cover letter</label>
                     <textarea name="letter" id="letter" cols="30" rows="10" class="form-control"></textarea>
                 </div>
             </div>
         </div>
         <div class="row mb-3">
             <div class="col-md-12">
-                <p>By saving your information, you agree to our <a href="">Privacy Policy</a>.</p>
+                <p class="text-muted small">By submitting this form, you agree to the terms of our <a href="">Privacy Policy</a>.</p>
             </div>
         </div>
 

@@ -24,7 +24,7 @@
             <div class="card  m-2  bg-white h-100 rounded-4 border-0 shadow-lg">
                 <div class="sidebar-header text-center position-relative bg-light shadow-lg rounded-4"
                     style="background-image: url('{{ asset('lam-ang/images/capitol-grey.webp') }}'); height:125px; background-size: 100%; background-position: bottom; background-repeat: no-repeat;">
-                    <img src="{{ asset('lam-ang/images/work.png') }}" alt="" style="max-width:10rem; ">
+                    {{-- <img src="{{ asset('lam-ang/images/work.png') }}" alt="" style="max-width:10rem; "> --}}
                     <a type="button" id="sidebarCollapse" class="btn btn-secondary bg-pilipinas"
                         style="position: absolute; right:-25px; top:100px ">
                         <x-awesome.chevron class=""></x-awesome.chevron>

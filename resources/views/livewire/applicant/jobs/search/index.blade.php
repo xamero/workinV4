@@ -294,7 +294,7 @@
                                     data-bs-auto-close="outside" aria-expanded="false">
                                     {{ $specialization ? count($specialization) . ' Specialization' : 'Specialization' }}
                                 </button>
-                                <div class="dropdown-menu p-0" aria-labelledby="specialization-filter">
+                                <div class="dropdown-menu p-0" aria-labelledby="specialization-filter" style="z-index: 1000;">
                                     <div class="accordion accordion--custom border-0" id="specialization">
                                         @foreach ($specializations as $spec)
                                             <div class="accordion-item text-black bg-white"
